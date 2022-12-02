@@ -1,0 +1,31 @@
+<div class="container my-auto p-3" th:fragment="contenido">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header h3" th:text="${jugador.nombre}"></div>
+                <div class="card-body">
+                    <p>
+                        <span class="fw-bold">Fecha de nacimiento:</span>
+                        <span th:text="${#dates.format(jugador.fechaNacimiento, 'd MMMMM yyyy')}"></span>
+                    </p>
+                    <p>
+                        <span class="fw-bold">Lugar de Nacimiento:</span>
+                        <span th:text="${jugador.lugarDeNacimiento.paisNombre}"></span>
+                    </p>
+                    <p>
+                        <span class="fw-bold">Selección:</span>
+                        <span th:text="${jugador.seleccion.nombre}"></span>
+                    </p>
+                    <div class="mb-3" th:if="${jugador.foto != null}">
+                        <img th:src="${'/images/jugadores/' + jugador.foto}" th:alt="${'Foto de ' + jugador.nombre}" height="200px">
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <a href="/jugadores" class="btn btn-secondary mx-2">Volver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:fragment="script"></script>

@@ -1,0 +1,64 @@
+<div class="container p-3" th:fragment="contenido">
+    <div class="card p-4">
+        <div class="row">
+            <div th:if="${exito}" class="alert alert-success alert-dismissible fade show">
+                <span th:text="${exito}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div th:if="${error}" class="alert alert-danger alert-dismissible fade show">
+                <span th:text="${error}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col h2">Listado de países</div>
+            <a href="/paises/crear" class="col-auto btn btn-lg btn-success">
+                <i class="fa-solid fa-plus"></i>
+            </a>
+        </div>
+                
+        <table id="paises" class="display" style="width:100%"> <!-- Lista de Paises -->
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>País</th>
+                    <th>Codigo de país</th>
+                    <th>Bandera</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="p : ${paises}">
+                    <td th:text="${p.paisId}"></td>
+                    <td th:text="${p.paisNombre}"></td>
+                    <td th:text="${p.pcc}"></td>
+                    <td>
+                        <img class="border" th:src="|/images/banderas/${p.pcc}.webp|" th:alt="|Bandera de ${p.paisNombre}|" height="20px">
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" th:href="@{'/paises/{id}' (id=${p.paisId})}">
+                            <i class="fa-solid fa-eye" title="Ver"></i>
+                        </a>
+
+                        <a class="btn btn-secondary" th:href="@{'/paises/editar/{id}' (id=${p.paisId})}">
+                            <i class="fa-solid fa-pencil" title="Editar"></i>
+                        </a>
+
+                        <form class="d-inline" th:action="@{'/paises/{id}' (id=${p.paisId})}" th:method="DELETE">
+                            <button type="submit" class="btn btn-danger" onclick="javascript: confirm('¿Está seguro de eliminar?')">
+                                <i class="fa-solid fa-trash-can" title="Eliminar"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script th:fragment="script">
+    $(document).ready(function() {
+        $('#paises').DataTable();
+    } );
+</script>

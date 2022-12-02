@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:remove="all">Plantilla para correo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </head>
+    <body>
+        <p>
+            ¡Hola, <span th:text="${nombre}">Nombre de ejemplo</span>!
+        </p>
+        <p th:if="${nombre.length() > 10}">
+            ¡Epa! Tu nombre tiene más de 10 caracteres.
+        </p>
+        <p>
+            Participaste de la clase del curso de <b>Desarrollo Web Full Stack con Java</b> el
+            <span th:text="${fecha}">28-12-2012</span>
+        </p>
+        <p>Tus habilidades son:</p>
+        <ul th:remove="all-but-first">
+            <li th:each="tech : ${habilidades}" th:text="${tech}">Cantar</li>
+            <li>Bailar</li>
+            <li>Cocinar</li>
+        </ul>
+        <p>
+            Saludos, <br/>
+            <em>Polo TIC</em>
+        </p>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<div class="container my-auto p-3" th:fragment="contenido">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Editar estadio
+                </div>
+                <form class="card-body" th:action="@{'/estadios/editar/{id}' (id=${estadio.id})}" th:object="${estadio}" th:method="PUT" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" th:field="*{nombre}" th:errorClass="'is-invalid'">
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ciudad" class="form-label">Ciudad</label>
+                        <input type="text" class="form-control" id="ciudad" th:field="*{ciudad}" th:errorClass="'is-invalid'">
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="capacidad" class="form-label">Capacidad</label>
+                        <input type="number" class="form-control" id="capacidad" th:field="*{capacidad}" th:errorClass="'is-invalid'">
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('capacidad')}" th:errors="*{capacidad}"></div>
+                    </div>
+                    <div class="mb-3" th:if="${estadio.foto != null}">
+                        <label>Foto actual del estadio</label>
+                        <img th:src="${'/images/estadios/' + estadio.foto}" th:alt="${'Foto del estadio ' + estadio.nombre}" height="100px">
+                    </div>
+                    <div class="mb-3">
+                        <label for="archivo" class="form-label">Foto del estadio</label>
+                        <input class="form-control" type="file" id="archivo" name="archivo" accept="image/*">
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary mx-2">Editar</button>
+                        <a href="/estadios" class="btn btn-secondary mx-2">Volver</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:fragment="script">
+    $(document).ready(function() {
+        $('.select2').select2({
+            placeholder: 'Seleccione una opción',
+            allowClear: true,
+            width: '100%',
+        });
+    });
+</script>

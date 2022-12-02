@@ -1,0 +1,27 @@
+<div class="container my-auto p-3" th:fragment="contenido">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header h3" th:text="'Estadio '+${estadios.nombre}"></div>
+                <div class="card-body">
+                    <p>
+                        <span class="fw-bold">Ciudad:</span>
+                        <span th:text="${estadios.ciudad}"></span>
+                    </p>
+                    <p>
+                        <span class="fw-bold">Capacidad:</span>
+                        <span th:text="${estadios.capacidad} +' personas.'"></span>
+                    </p>
+                    <div class="mb-3" th:if="${estadios.foto != null}">
+                        <img th:src="${'/images/estadios/' + estadios.foto}" th:alt="${'Foto del estadio ' + estadios.nombre}" height="200px">
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <a href="/estadios" class="btn btn-secondary mx-2">Volver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:fragment="script"></script>
