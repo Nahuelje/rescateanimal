@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>edu.polo</groupId>
-	<artifactId>qatar</artifactId>
+	<artifactId>rescateanimal</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>qatar</name>
-	<description>Proyecto colaborativo para el curso Desarrollo Web Full Stack con Java</description>
+	<description>Proyecto grupal - Web de rescate animal</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
